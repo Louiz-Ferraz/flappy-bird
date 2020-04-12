@@ -1,4 +1,4 @@
-console.log('[DevSoutinho] Flappy Bird');
+console.log('Flappy Bird');
 
 const sprites = new Image();
 sprites.src = './sprites.png';
@@ -94,14 +94,74 @@ const planoFundo = {
     }
 }
 
-function loop() {
-    flappyBird.atualiza();
+// Tela de início
+const mensagemInicio = {
+    spriteX: 134,
+    spriteY: 0,
+    largura: 174,
+    altura: 151,
+    x: (canvas.width/2) - 174/2,
+    y: 50,
+    desenha() {
+        contexto.drawImage( 
+            sprites,
+            mensagemInicio.spriteX, mensagemInicio.spriteY,
+            mensagemInicio.largura, mensagemInicio.altura,
+            mensagemInicio.x, mensagemInicio.y,
+            mensagemInicio.largura, mensagemInicio.altura,
+        );
+    }
+}
 
-    planoFundo.desenha();
-    chao.desenha();
-    flappyBird.desenha();
+//
+// Telas
+//
+
+let telaAtiva = {};
+function mudaParaTela(novaTela) {
+    telaAtiva = novaTela;
+}
+
+const Telas = {
+    INICIO: {
+        desenha() {
+            planoFundo.desenha();
+            chao.desenha();
+            flappyBird.desenha();
+            mensagemInicio.desenha();
+        },
+        click() {
+            mudaParaTela(Telas.JOGO);
+        },
+        atualiza() {
+        }
+    }
+};
+
+Telas.JOGO = {
+    desenha() {
+        planoFundo.desenha();
+        chao.desenha();
+        flappyBird.desenha();
+    },
+    atualiza() {
+        flappyBird.atualiza();
+    }
+};
+
+function loop() {
+
+    telaAtiva.desenha();
+    telaAtiva.atualiza();
 
     requestAnimationFrame(loop); //Função que ajuda a desenhar os quadros de forma inteligente
 }
 
+window.addEventListener("click", function() {
+    if (telaAtiva.click) {
+        telaAtiva.click();
+    };
+})
+
+mudaParaTela(Telas.INICIO);
 loop();
