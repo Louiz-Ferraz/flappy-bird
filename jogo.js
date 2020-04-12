@@ -8,11 +8,11 @@ const contexto = canvas.getContext('2d');
 
 /* contexto.drawImage(  //Exemplo de como funciona drawImage
                         (https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)
-    image,              //imagem a ser utilizada
-    sx, sy,             //distância até a imagem que queremos que apareça na tela
-    sWidth, sHeight,    //referente ao tamanho da imagem
-    dx, dy,             //referente à posição dentro do canvas
-    dWidth, dHeight     //tamanho da imagem dentro do canvas
+    image,              //Imagem a ser utilizada
+    sx, sy,             //Distância até a imagem que queremos que apareça na tela
+    sWidth, sHeight,    //Referente ao tamanho da imagem
+    dx, dy,             //Referente à posição dentro do canvas
+    dWidth, dHeight     //Tamanho da imagem dentro do canvas
 ); */
 
 // Flappy Bird
